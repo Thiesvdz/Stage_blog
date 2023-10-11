@@ -82,9 +82,45 @@ a {
   }
 }
 
-.button_stage_1{
-  background-color: #200b4e;
-}
-.button_stage_2{
+.bg_color_stage_1{
   background-color: #A548FF;
+}
+
+.color_stage_1{
+  color: #A548FF;
+}
+
+.bg_color_stage_2{
+  background-color: #f86f42;
+}
+
+.color_stage_2{
+  color: #f86f42;
+}
+
+.gradient_stage_1{
+  background-color: #A548FF;
+  background: linear-gradient(to top, #000000,#a348ffc1);
+
+}
+
+.gradient_stage_2{
+  background-color: #f86f42;
+  background: linear-gradient(to top, #000000,#f87042c1);
+}
+.stage-1-hover,.stage-2-hover{
+  transition: .25s all ease-in-out;
+}
+
+.stage-1-hover{
+  font-weight: 600;
+  &:hover{
+    color: #A548FF;
+  }
+}
+.stage-2-hover{
+  font-weight: 600;
+  &:hover{
+    color: #f86f42;
+  }
 }
