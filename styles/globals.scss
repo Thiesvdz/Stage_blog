@@ -9,6 +9,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  color: rgb(255, 255, 255);
   &:before{
     content:'';
     content: "";
@@ -16,7 +17,7 @@ body {
     height: 100vh;
     //background: linear-gradient(to right bottom, #6d327c, #485DA6, #00a1ba, #01b18e, #32b37b);
     // background: #D3D3D3;
-    background-image: url("../public/bg.jpg");
+    background-image: url("../public/bg_black.jpg");
     position: fixed;
     left: 0;
     top: 0;
@@ -61,4 +62,29 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.glass_card{
+  background: rgb(0 0 0 / 46%);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.5px);
+  -webkit-backdrop-filter: blur(7.5px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.post_image{
+  height: 450px;
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.button_stage_1{
+  background-color: #200b4e;
+}
+.button_stage_2{
+  background-color: #A548FF;
 }
