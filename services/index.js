@@ -21,6 +21,7 @@ export const getPosts = async () => {
             slug
             title
             excerpt
+            postDate
             featuredImage {
               url
             }
@@ -101,6 +102,10 @@ export const getSimilarPosts = async (categories, slug) => {
         }
         createdAt
         slug
+        postDate
+        categories{
+          name
+        }
       }
     }
   `;
@@ -123,6 +128,9 @@ export const getAdjacentPosts = async (createdAt, slug) => {
         }
         createdAt
         slug
+        categories{
+          name
+        }
       }
       previous:posts(
         first: 1
@@ -135,6 +143,9 @@ export const getAdjacentPosts = async (createdAt, slug) => {
         }
         createdAt
         slug
+        categories{
+          name
+        }
       }
     }
   `;
@@ -163,6 +174,7 @@ export const getCategoryPost = async (slug) => {
             slug
             title
             excerpt
+            postDate
             featuredImage {
               url
             }
@@ -197,6 +209,11 @@ export const getFeaturedPosts = async () => {
         title
         slug
         createdAt
+        categories {
+          name
+          slug
+        }
+          
       }
     }   
   `;
@@ -247,6 +264,10 @@ export const getRecentPosts = async () => {
         }
         createdAt
         slug
+        postDate
+        categories{
+          name
+        }
       }
     }
   `;
