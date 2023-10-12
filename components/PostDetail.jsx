@@ -10,19 +10,21 @@ const PostDetail = ({ post }) => {
 
     if (obj) {
       if (obj.bold) {
-        modifiedText = (<b key={index}>{text}</b>);
+        modifiedText = (<b key={index} className={color}>{text}</b>);
       }
 
       if (obj.italic) {
-        modifiedText = (<em key={index}>{text}</em>);
+        modifiedText = (<em key={index} className={color}>{text}</em>);
       }
 
       if (obj.underline) {
-        modifiedText = (<u key={index}>{text}</u>);
+        modifiedText = (<u key={index} className={color}>{text}</u>);
       }
     }
 
     switch (type) {
+      case 'heading-one':
+        return <h1 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h1>;
       case 'heading-three':
         return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
       case 'paragraph':
@@ -39,6 +41,8 @@ const PostDetail = ({ post }) => {
             src={obj.src}
           />
         );
+      // case 'bulleted-list':
+      //   return <ul></ul>
       default:
         return modifiedText;
     }
