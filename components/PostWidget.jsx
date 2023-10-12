@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import { getSimilarPosts, getRecentPosts } from '../services';
-import { FormatDate } from '../utils/formatDate';
 
 const PostWidget = ({ categories, slug }) => {
   const [relatedPosts, setRelatedPosts] = useState([]);
@@ -27,8 +26,8 @@ const PostWidget = ({ categories, slug }) => {
         return (
           <div key={index} className="flex items-center w-full mb-4">
             <div className="flex-grow">
-              <p className="text-gray-500 font-xs">{FormatDate(post.postDate)}</p>
-              <Link href={`/post/${post.slug}`} key={index}><span className={`text-md cursor-pointer ${bgColor}`}>{`${post.title} | ${post.categories[0].name}`}</span></Link>
+              <p className="text-gray-500 font-xs">{post.categories[0].name}</p>
+              <Link href={`/post/${post.slug}`} key={index}><span className={`text-md cursor-pointer ${bgColor}`}>{post.title}</span></Link>
             </div>
           </div>
         );
