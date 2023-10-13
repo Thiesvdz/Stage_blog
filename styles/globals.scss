@@ -63,6 +63,14 @@ a {
 * {
   box-sizing: border-box;
 }
+ol{
+  list-style-type: decimal;
+  padding-left: 40px;
+}
+ul {
+  list-style: disc;
+  padding-left: 40px;
+}
 
 .glass_card{
   background: rgb(0 0 0 / 46%);
@@ -78,9 +86,25 @@ a {
   img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+  }
+} 
+@media screen and (max-width: 1300px) {
+  .post_image{
+    height: 300px;
   }
 }
+@media screen and (max-width: 900px) {
+  .post_image{
+    height: 250px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .post_image{
+    height: 200px;
+  }
+}
+
 
 .bg_color_stage_1{
   background-color: #A548FF;
