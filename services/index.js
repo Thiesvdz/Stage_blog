@@ -73,6 +73,7 @@ export const getPostDetails = async (slug) => {
         }
         createdAt
         slug
+        postDate
         content {
           raw
         }
