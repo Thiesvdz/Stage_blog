@@ -48,16 +48,14 @@ const PostDetail = ({ post }) => {
           return (
             <ul>
               {obj.children.map((item, i) => (
-                <li key={i} style={{ fontSize: '14px' }}>
+                <li key={i} style={{ fontSize: '12px' }}>
                   {item.children.map((itemText, j) => {
-                    const itemTextTwo = itemText.children[0].children[0];
-                    let itemTextThree = '';
-                    if (itemTextTwo.children !== undefined) {
-                      itemTextThree = itemText.children[0].children[0].children[0];
-                    }
+                    const [itemTextTwo] = itemText.children[0].children;
+                    const [itemTextThree] = itemTextTwo?.children || [];
+                    const textToDisplay = itemTextThree ? itemTextThree.text : itemTextTwo.text;
                     return (
                       <React.Fragment key={j}>
-                        {itemTextThree ? itemTextThree.text : itemTextTwo.text}
+                        {textToDisplay}
                       </React.Fragment>
                     );
                   })}
@@ -67,30 +65,7 @@ const PostDetail = ({ post }) => {
           );
         }
         return null;
-      case 'numbered-list':
-        if (obj.children) {
-          return (
-            <ol>
-              {obj.children.map((item, i) => (
-                <li key={i} style={{ fontSize: '14px' }}>
-                  {item.children.map((itemText, j) => {
-                    const itemTextTwo = itemText.children[0].children[0];
-                    let itemTextThree = '';
-                    if (itemTextTwo.children !== undefined) {
-                      itemTextThree = itemText.children[0].children[0].children[0];
-                    }
-                    return (
-                      <React.Fragment key={j}>
-                        {itemTextThree ? itemTextThree.text : itemTextTwo.text}
-                      </React.Fragment>
-                    );
-                  })}
-                </li>
-              ))}
-            </ol>
-          );
-        }
-        return null;
+
       case 'image':
         return (
           <img
