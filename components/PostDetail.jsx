@@ -23,9 +23,9 @@ const PostDetail = ({ post }) => {
         modifiedText = (
           <a
             key={index}
-            href={obj.href} // The URL for the hyperlink
+            href={obj.href}
             className={color}
-            target={obj.openInNewTab ? '__blank' : ''} // You can customize the target behavior
+            target={obj.openInNewTab ? '__blank' : ''}
             rel="noopener noreferrer"
           >
             {obj.children[0].text}
