@@ -68,13 +68,15 @@ const PostDetail = ({ post }) => {
 
       case 'image':
         return (
-          <img
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
+          <a href={obj.src} target="__blank">
+            <img
+              key={index}
+              alt={obj.title}
+              height={obj.height}
+              width={obj.width}
+              src={obj.src}
+            />
+          </a>
         );
       case 'video':
         return (
