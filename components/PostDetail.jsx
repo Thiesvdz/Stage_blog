@@ -33,7 +33,7 @@ const PostDetail = ({ post }) => {
         );
       }
     }
-
+    console.log(obj);
     switch (type) {
       case 'heading-one':
         return <h1 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h1>;
@@ -75,6 +75,18 @@ const PostDetail = ({ post }) => {
             width={obj.width}
             src={obj.src}
           />
+        );
+      case 'video':
+        return (
+          <video
+            controls
+            key={index}
+            alt={obj.title}
+            height={obj.height}
+            width={obj.width}
+            src={obj.src}
+          ><track kind="captions" />
+          </video>
         );
       default:
         return modifiedText;
