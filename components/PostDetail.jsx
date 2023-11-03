@@ -1,74 +1,15 @@
 import React from 'react';
 import { FormatDate } from '../utils/formatDate';
 import { addTextDecoration } from '../utils/addTextDecoration';
+import { renderSwitch } from '../utils/renderSwitch';
 
 const PostDetail = ({ post }) => {
   const category = post.categories[0];
   const color = category.slug === 'stage-2' ? 'color_stage_2' : 'color_stage_1';
   const getContentFragment = (index, text, obj, type) => {
-    // const modifiedText = text;
     const modifiedText = addTextDecoration(index, obj, text, color);
 
-    switch (type) {
-      case 'heading-one':
-        return <h1 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h1>;
-      case 'heading-three':
-        return <h3 key={index} className="text-xl font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
-      case 'paragraph':
-        return <p key={index} className="mb-8">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
-      case 'heading-four':
-        return <h4 key={index} className="text-md font-semibold mb-4">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
-      case 'bulleted-list':
-        if (obj.children) {
-          return (
-            <ul>
-              {obj.children.map((item, i) => (
-                <li key={i} style={{ fontSize: '12px' }}>
-                  {item.children.map((itemText, j) => {
-                    const [itemTextTwo] = itemText.children[0].children;
-                    const [itemTextThree] = itemTextTwo?.children || [];
-                    const textToDisplay = itemTextThree ? itemTextThree.text : itemTextTwo.text;
-                    return (
-                      <React.Fragment key={j}>
-                        {textToDisplay}
-                      </React.Fragment>
-                    );
-                  })}
-                </li>
-              ))}
-            </ul>
-          );
-        }
-        return null;
-
-      case 'image':
-        return (
-          <a href={obj.src} target="__blank">
-            <img
-              key={index}
-              alt={obj.title}
-              height={obj.height}
-              width={obj.width}
-              src={obj.src}
-            />
-          </a>
-        );
-
-      case 'video':
-        return (
-          <video
-            controls
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          ><track kind="captions" />
-          </video>
-        );
-      default:
-        return modifiedText;
-    }
+    return renderSwitch(index, obj, type, modifiedText);
   };
 
   return (
