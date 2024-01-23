@@ -29,6 +29,8 @@ export default async function asynchandler(req, res) {
       slug: req.body.slug,
     });
     return res.status(200).send(result);
-  } catch (error) { console.log(error); }
-
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 }
