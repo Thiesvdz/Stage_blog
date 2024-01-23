@@ -21,12 +21,14 @@ export default async function asynchandler(req, res) {
     }
   `;
 
-  const result = await graphQLClient.request(query, {
-    name: req.body.name,
-    email: req.body.email,
-    comment: req.body.comment,
-    slug: req.body.slug,
-  });
+  try {
+    const result = await graphQLClient.request(query, {
+      name: req.body.name,
+      email: req.body.email,
+      comment: req.body.comment,
+      slug: req.body.slug,
+    });
+    return res.status(200).send(result);
+  } catch (error) { console.log(error); }
 
-  return res.status(200).send(result);
 }
