@@ -16,7 +16,7 @@ const Header = () => (
       </div>
       <Link href="/over-mij">
         <span className="mt-2 align-middle text-white font-semibold cursor-pointer">
-          Over mij
+          OVER MIJ
         </span>
       </Link>
     </div>
