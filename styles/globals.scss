@@ -83,7 +83,14 @@ ul {
     text-decoration: underline;
   }
 }
-
+.category_image{
+  height: 350px;
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}
 .post_image{
   height: 450px;
   img{

@@ -5,7 +5,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query MyQuery {
-      postsConnection {
+      postsConnection(first: 15) {
         edges {
           cursor
           node {
@@ -46,6 +46,9 @@ export const getCategories = async () => {
         categories {
           name
           slug
+          categoryImage {
+            url
+          }
         }
     }
   `;
@@ -159,7 +162,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      postsConnection(where: {categories_some: {slug: $slug}}) {
+      postsConnection(where: {categories_some: {slug: $slug}}, first: 15, orderBy: postDate_ASC) {
         edges {
           cursor
           node {
@@ -194,10 +197,10 @@ export const getCategoryPost = async (slug) => {
   return result.postsConnection.edges;
 };
 
-export const getFeaturedPosts = async () => {
+export const getFeaturedPosts = async (category) => {
   const query = gql`
-    query GetCategoryPost() {
-      posts(where: {featuredPost: true}) {
+    query GetCategoryPost($category: String!) { 
+      posts(where: {featuredPost: true, categories_some: {slug: $category}}) {
         author {
           name
           photo {
@@ -213,13 +216,12 @@ export const getFeaturedPosts = async () => {
         categories {
           name
           slug
-        }
-          
+        }  
       }
-    }   
+    }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await request(graphqlAPI, query, { category });
 
   return result.posts;
 };

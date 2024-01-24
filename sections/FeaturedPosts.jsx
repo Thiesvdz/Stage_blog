@@ -24,16 +24,16 @@ const responsive = {
   },
 };
 
-const FeaturedPosts = () => {
+const FeaturedPosts = ({ category }) => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
-
   useEffect(() => {
-    getFeaturedPosts().then((result) => {
+    getFeaturedPosts(category).then((result) => {
+      console.log(result);
       setFeaturedPosts(result);
       setDataLoaded(true);
     });
-  }, []);
+  }, [category]);
 
   const customLeftArrow = (
     <div className="absolute arrow-btn left-0 text-center py-3 cursor-pointer bg-black rounded-full">

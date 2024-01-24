@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { submitComment } from '../services';
 
-const CommentsForm = ({ slug }) => {
+const CommentsForm = ({ slug, post }) => {
   const [error, setError] = useState(false);
   const [localStorage, setLocalStorage] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({ name: null, email: null, comment: null, storeData: false });
+
+  const bgColor = post?.categories[0]?.slug === 'stage-2' ? 'bg_color_stage_2' : 'bg_color_stage_1';
 
   useEffect(() => {
     setLocalStorage(window.localStorage);
@@ -91,9 +93,9 @@ const CommentsForm = ({ slug }) => {
         </div>
       </div>
       {error && <p className="text-xs text-red-500">All fields are mandatory</p>}
-      <div className="mt-8">
-        <button type="button" onClick={handlePostSubmission} className="transition duration-500 ease hover:bg-indigo-900 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">Post Comment</button>
-        {showSuccessMessage && <span className="text-xl float-right font-semibold mt-3 text-green-500">Uw comment wordt gechecked! Wanneer deze is goedgekeurd wordt hij gepost!</span>}
+      <div className="mt-8 flex flex-col gap-4">
+        <button type="button" onClick={handlePostSubmission} className={`transition duration-500 ease transform hover:-translate-y-1 ${bgColor} text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer max-w-[250px]`}>Post Comment</button>
+        {showSuccessMessage && <span className="text-xl font-semibold mt-3 text-green-500">Uw comment wordt gechecked! Wanneer deze is goedgekeurd wordt hij gepost!</span>}
       </div>
     </div>
   );
