@@ -7,7 +7,7 @@ import { FeaturedPosts } from '../../sections';
 
 const CategoryPost = ({ posts }) => {
   const router = useRouter();
-  const category = posts[0].node.categories[0].slug;
+  const category = posts[0]?.node.categories[0]?.slug || 'stage-1';
 
   if (router.isFallback) {
     return <Loader />;
