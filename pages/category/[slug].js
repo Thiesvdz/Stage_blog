@@ -5,14 +5,18 @@ import { getCategories, getCategoryPost } from '../../services';
 import { PostCard, Categories, Loader } from '../../components';
 import { FeaturedPosts } from '../../sections';
 
-const CategoryPost = ({ posts }) => {
+const CategoryPost = ({ posts = [] }) => { // Default posts to an empty array
   const router = useRouter();
-  const category = posts.length > 0 ? posts[0]?.node?.categories[0]?.slug : 'stage-1';
 
-  if (router.isFallback || !posts) {
+  // Use the first post's category as the page category, default to 'stage-1' if posts are not loaded
+  const category = posts.length > 0 ? posts[0].node.categories[0].slug : 'stage-1';
+
+  // Display Loader while the page is being statically generated on demand (fallback: true)
+  if (router.isFallback) {
     return <Loader />;
   }
 
+  // Render the page content once posts are available
   return (
     <div className="container mx-auto px-5 mb-8">
       <FeaturedPosts category={category} />
@@ -31,23 +35,24 @@ const CategoryPost = ({ posts }) => {
     </div>
   );
 };
+
 export default CategoryPost;
 
 // Fetch data at build time
 export async function getStaticProps({ params }) {
-  const posts = await getCategoryPost(params.slug) || [];
+  const posts = await getCategoryPost(params.slug);
 
+  // Ensure 'posts' is always an array to prevent runtime errors
   return {
-    props: { posts },
+    props: { posts: posts || [] },
   };
 }
 
-// Specify dynamic routes to pre-render pages based on data.
-// The HTML is generated at build time and will be reused on each request.
+// Specify dynamic routes to pre-render pages based on data
 export async function getStaticPaths() {
-  const categories = await getCategories() || [];
+  const categories = await getCategories();
   return {
     paths: categories.map(({ slug }) => ({ params: { slug } })),
-    fallback: true,
+    fallback: true, // or 'blocking' if you want to wait for the data to be generated at request time
   };
 }
