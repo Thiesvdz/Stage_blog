@@ -29,7 +29,6 @@ const FeaturedPosts = ({ category }) => {
   const [dataLoaded, setDataLoaded] = useState(false);
   useEffect(() => {
     getFeaturedPosts(category).then((result) => {
-      console.log(result);
       setFeaturedPosts(result);
       setDataLoaded(true);
     });
