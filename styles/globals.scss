@@ -103,15 +103,24 @@ ul {
   .post_image{
     height: 300px;
   }
+  .category_image{
+    height: 250px;
+  }
 }
 @media screen and (max-width: 900px) {
   .post_image{
     height: 250px;
   }
+  .category_image{
+    height: 200px;
+  }
 }
 @media screen and (max-width: 550px) {
   .post_image{
     height: 200px;
+  }
+  .category_image{
+    height: 150px;
   }
 }
 
